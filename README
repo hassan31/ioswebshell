@@ -1,0 +1,27 @@
+iOS WebShell
+
+Currently most hybrid development environments still require the web developer to launch Eclipse or Xcode
+to write and/or compile their mobile app, package it, and distribute it via the app stores. These development
+environments have their own significant learning curves, and still require the web developer to learn specific
+APIs to execute native functions.
+The purpose of
+webshell
+is to circumvent the whole development/packaging effort by creating a custom
+mobile browser that facilitates native iOS interaction via a suite of native modal controllers common to
+business. These native modal controllers interface with JSON based RESTful web services provided by the
+web developer to consume data posted by the device. The native modal controllers also execute JavaScript
+based callbacks on the originating webpage defined by the web developer.
+webshell
+achieves this goal using
+custom div tags containing JSON configuration data to enable one or more native features. Those features
+include:
+
+
+•audio recording
+•video recording
+•signature capture
+•barcode/qrcode reader
+•location services
+•location rendering
+•upload / download files
+•push notification registration
