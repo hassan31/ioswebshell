@@ -19,14 +19,9 @@
 
 #import <Foundation/Foundation.h>
 
-#define TEST_MODE YES
+#define TEST_MODE NO
 #define TEST_URL @"http://192.168.0.116:8080/web.shell.sample/"
 #define DEFAULT_URL @"https://tekcounsel.net/web.shell.sample/"
-#define TEST_API_KEY_VALIDATION_URL @"http://192.168.0.116:8080/web.user.registry/webshell-registration"
-#define API_KEY_VALIDATION_URL @"https://tekcounsel.net/web.user.registry/webshell-registration"
-
-
-#define KEY_VALID_API @"valid-apikey"
 
 //NSNotification events	
 #define ON_RESPONSE @"onresponse"

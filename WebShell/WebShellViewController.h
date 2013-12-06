@@ -186,7 +186,5 @@
 
 -(void) sendLink;
 
--(void)onLicenseValidation:(NSData*)jsondata;
-
 
 @end

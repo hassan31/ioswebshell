@@ -316,20 +316,9 @@
         [prefs setValuesForKeysWithDictionary:props];
         [prefs setValue:@"true" forKey:@"setup"];
         
-        
-        if(TEST_MODE){
-            [prefs setValue:@"true" forKey:KEY_VALID_API];
-        }
+    
         
         [prefs synchronize];
-        
-        
-            NSString *validkey = [prefs stringForKey:KEY_VALID_API];
-            if (![validkey isEqualToString:@"true"]) {
-                [self validateApiKey:[props getString:@"apikey"]];
-            }
-        
-        
         
         
         
@@ -1223,41 +1212,6 @@
     NSMutableString *params = [[NSMutableString alloc] initWithString:@"apikey="];
     [params appendString:apikey];
     
-    if(TEST_MODE){
-        [http doGet:TEST_API_KEY_VALIDATION_URL params:params];
-    }else{
-        [http doGet:API_KEY_VALIDATION_URL params:params];
-    }
-    
-    
 }
-
--(void)onLicenseValidation:(NSData*)jsondata{
-    
-    
-    NSDictionary *dict = [JSONUtils convertJSONToDictionary:jsondata];
-    
-    //NSLog(@"desc %@", [dict description]);
-    
-    if (dict==nil) {
-        [prefs setObject:@"false" forKey:KEY_VALID_API];
-    }else{
-        [prefs setValuesForKeysWithDictionary:dict];
-    }
-    
-    [prefs synchronize];
-    
-    NSString *validkey = [prefs stringForKey:KEY_VALID_API];
-    if([validkey isEqualToString:@"false"]){
-        self.webView.hidden=TRUE;
-        [UIHelper fadeInValidationMessage:self.view text:[dict getString:@"message"]];
-        
-    }else if([validkey isEqualToString:@"true"]){
-        self.webView.hidden=FALSE;
-        [UIHelper fadeInMessage:self.view text:@"apikey validated successfully"];
-    }
-    
-}
-
 
 @end
