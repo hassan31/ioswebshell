@@ -1,0 +1,105 @@
+/* 
+  Localizable.strings
+  WebShell
+
+  Created by mark ambler on 5/31/13.
+  Copyright (c) 2013 mark ambler. All rights reserved.
+*/
+
+"actions"="actions...";
+
+"saveMessage"="save data?";
+
+"yes"="yes";
+
+"no"="no";
+
+"restoreView"="gently shake your device to restore the view.";
+
+"noCameraFound"="no camera found on device.";
+
+"uploading"="...";
+
+"uploadFile"="upload file";
+
+"uploadInstructions"="touch one or more files and click the upload button below";
+
+"actionsCanceled"="Cancel";
+
+"signatureDoubleTap"="double tap to reset signature.";
+
+"scanBarcode"="scan barcode";
+
+"recordAudio"="record audio";
+
+"recordPhoto"="record photo";
+
+"recordSignature"="record signature";
+
+"recordVideo"="record video";
+
+"refresh"="refresh";
+
+"clearHistory"="clear history";
+
+"history"="history";
+
+"AUDIO_STATE_RECORDING_AVAILABLE"="recording available";
+
+"AUDIO_STATE_NO_RECORDING"="no recording";
+
+"AUDIO_STATE_ABOUT_TO_PLAY"="about to play audio...";
+
+"AUDIO_STATE_PLAYING"="playing...";
+
+"AUDIO_STATE_PLAYING_ERROR"="error playing";
+
+"AUDIO_STATE_ABOUT_TO_RECORD"="initializing recorder...";
+
+"AUDIO_STATE_RECORDING"="recording...";
+
+"AUDIO_STATE_FINISHED_RECORDING"="finished recording";
+
+"AUDIO_STATE_RECORDING_ERROR"="recording error";
+
+"AUDIO_STATE_STOPPED"="stopped";
+
+"AUDIO_STATE_READY"="ready";
+
+"historyCleared"="history cleared";
+
+"gpsMessage"="GPS data will be sent to this site.  Use settings to remove/clear.";
+
+"restoreDefaults"="defaults";
+
+"renderLocation"="Location(s)";
+
+"gettingLocations"="getting locations";
+
+"locationServicesOff"="Mapa puede no representar correctamente si los servicios de localización están apagados";
+
+"error"="error";
+
+"downloadHistory"="downloads";
+
+"fileExists"="file has already been downloaded";
+
+"bookmark"="bookmark";
+
+"bookMarkList"="bookmarks";
+
+"invalidJsonActions"="invalid json actions for div webshell-bottom-actions.  expected an array";
+
+"emailLink"="email link";
+
+"emailNotSetup"="email not setup";
+
+"microphoneAccessDenied"="Microphone Access Denied";
+
+"microphoneAccessDeniedText"="This app requires access to your device's Microphone.\n\nPlease enable Microphone access for this app in Settings / Privacy / Microphone";
+
+"ok"="OK";
+
+
+
+
