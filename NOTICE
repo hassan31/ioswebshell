@@ -10,4 +10,4 @@ The project contains the following 3rd party code:
 
 1. The product contains ZBar Code Reader, which is available from ZBar Consulting Services URL , and which is under the GNU LGPL 2.1 license.
 
-2. The product contains Base64 Encoder/Decoder, which is available from Matt Gallagher URL , and which is under a simple "MIT like" license.
+2. The product contains Base64 Encoder/Decoder, which is available from Matt Gallagher http://www.cocoawithlove.com/2009/06/base64-encoding-options-on-mac-and.html , and which is under a simple "MIT like" license.
