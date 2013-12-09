@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>33978639-B4F2-4123-A9E5-D3871301053E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>webshell</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D1B37D7C-F960-4169-BA1E-58F774C44139</key>
+		<string>https://github.com/mwambler/ioswebshell.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>webshell.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D1B37D7C-F960-4169-BA1E-58F774C44139</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mwambler/ioswebshell.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D1B37D7C-F960-4169-BA1E-58F774C44139</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D1B37D7C-F960-4169-BA1E-58F774C44139</string>
+			<key>IDESourceControlWCCName</key>
+			<string>WebShell</string>
+		</dict>
+	</array>
+</dict>
+</plist>
