@@ -65,12 +65,14 @@
     
     self.audioSpinner.autoresizesSubviews=TRUE;
     
-    isdark = [UIColor isDarkColor:[prefs objectForKey:@"hexColor"]];
+    NSString *buttonShade = [prefs objectForKey:@"buttonShade"];
     
-    if (isdark) {
-        self.audioSpinner.color=[UIColor whiteColor];
-    }else{
+    
+    
+    if ([buttonShade isEqualToString:@"dark"]) {
         self.audioSpinner.color=[UIColor blackColor];
+    }else{
+        self.audioSpinner.color=[UIColor whiteColor];
     }
     
     
@@ -304,7 +306,7 @@
     [spinner setMsg:@"uploading".translate];
     [spinner startAnimating];
 
-    NSData *audioData = [FileUtils retrieveFromCache:FILE_NAME_AUDIO];
+    //NSData *audioData = [FileUtils retrieveFromCache:FILE_NAME_AUDIO];
     
     
     //setup the http utils client
@@ -316,10 +318,11 @@
     //set the call back method (will get called after response recieved to update the UI)
     http.callBack=@selector(onResponse:);
     
+    //build the url so we can send in the relative path.
+    NSURL *fileurl = [FileUtils retrieveUrlFromCache:FILE_NAME_AUDIO];
     
     //this controller requires UPLOAD action, we will ignore what is set in the config from the server
-   //NSLog(@"calling url %@", [action getString:@"url"]);
-    [http uploadFile:audioData filename:FILE_NAME_AUDIO url:[action getString:@"url"]];
+    [http uploadFile:fileurl.path url:[action getString:@"url"]];
 
 
 }

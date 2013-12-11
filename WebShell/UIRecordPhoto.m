@@ -73,12 +73,11 @@
     
     self.navBar.topItem.title=@"recordPhoto".translate;
     
-    
-    
     selectedImage.layer.cornerRadius=5.0f;
-    isdark = [UIColor isDarkColor:[prefs objectForKey:@"hexColor"]];
     
-    if (isdark) {
+     NSString *buttonShade = [prefs objectForKey:@"buttonShade"];
+    
+    if ([buttonShade isEqualToString:@"light"]) {
         selectedImage.backgroundColor=[UIColor lightGrayColor];
     }else{
         selectedImage.backgroundColor=[UIColor blackColor];
@@ -303,7 +302,7 @@
     NSURL *url = [FileUtils retrieveUrlFromCache:FILE_NAME_PHOTO];
     
     NSData *filedata = [NSData dataWithContentsOfURL:url];
-   // NSLog(@"filedata.length is %i", filedata.length);
+    NSLog(@"filedata.length is %i", filedata.length);
     
     
     
@@ -314,7 +313,7 @@
         UIImage *image = [UIImage imageWithData:filedata];
         image = [image scaleDownBy:scaledown.doubleValue];
         filedata = UIImagePNGRepresentation(image);
-        //NSLog(@"filedata length is %i", filedata.length);
+        NSLog(@"filedata length is %i", filedata.length);
         
     }
     
@@ -331,7 +330,7 @@
     
     //this controller requires UPLOAD action, we will ignore what is set in the config from the server
     //NSLog(@"calling url %@", [action getString:@"url"]);
-    [http uploadFile:filedata filename:FILE_NAME_PHOTO url:[action getString:@"url"]];
+    [http uploadFile:FILE_NAME_PHOTO url:[action getString:@"url"]];
     
     
 }

@@ -13,6 +13,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Code based on LocateMe sample from Apple (https://developer.apple.com/library/ios/samplecode/LocateMe/Introduction/Intro.html)
  */
 
 #import "LocationService.h"

@@ -76,9 +76,9 @@
 
     self.navBar.topItem.title=@"recordVideo".translate;
     
-    isdark = [UIColor isDarkColor:[prefs objectForKey:@"hexColor"]];
+     NSString *buttonShade = [prefs objectForKey:@"buttonShade"];
     
-    if (isdark) {
+    if ([buttonShade isEqualToString:@"light"]) {
         selectedImage.backgroundColor=[UIColor lightGrayColor];
     }else{
         selectedImage.backgroundColor=[UIColor blackColor];
@@ -227,7 +227,7 @@
     
     [spinner startAnimating];
     
-    NSData *movieData = [NSData dataWithContentsOfURL:self.movieURL];
+    //NSData *movieData = [NSData dataWithContentsOfURL:self.movieURL];
     
     
     //setup the http utils client
@@ -242,7 +242,7 @@
     
     //this controller requires UPLOAD action, we will ignore what is set in the config from the server
     //NSLog(@"calling url %@", [action getString:@"url"]);
-    [http uploadFile:movieData filename:FILE_NAME_VIDEO url:[action getString:@"url"]];
+    [http uploadFile:FILE_NAME_VIDEO url:[action getString:@"url"]];
     
     
 }

@@ -330,7 +330,7 @@
     for(NSIndexPath *path in selectedIndexPaths){
         NSDictionary *entry = [files objectAtIndex:path.row];
         
-        NSData *filedata = [FileUtils retrieveFromDocuments:[entry getString:@"filename"]];
+        //NSData *filedata = [FileUtils retrieveFromDocuments:[entry getString:@"filename"]];
         
         HTTPUtils *http = [[HTTPUtils alloc]init];
         
@@ -338,7 +338,10 @@
         
         http.callBackOwner=self;
         
-        [http uploadFile:filedata filename:[entry getString:@"filename"] url:[action getString:@"url"]];
+        NSURL *fileurl = [NSURL URLWithString:[entry getString:@"fileurl"]];
+        
+        
+        [http uploadFile:fileurl.path url:[action getString:@"url"]];
     }
     
     [filenames appendString:@"uploading".translate];

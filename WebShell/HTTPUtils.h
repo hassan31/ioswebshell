@@ -21,6 +21,7 @@
 #import "NSData+Base64.h"
 #import "JSONUtils.h"
 #import "NSMutableDictionary+SafeMethods.h"
+#import "HTTPUploader.h"
 
 @interface HTTPUtils : NSObject {
 	
@@ -61,7 +62,7 @@
 
 -(void) addCustomHeader:(NSString *)headerName headerValue:(NSString *)headerValue;
 
-- (void)uploadFile:(NSData *)fileData filename:(NSString *)filename url:(NSString*)url;
+- (void)uploadFile:(NSString *)filename url:(NSString*)url;
 
 -(void)onComplete :(NSData*)data;
 

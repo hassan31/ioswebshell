@@ -26,6 +26,7 @@
 
 }
 
+
 +(double) distanceInMeters:(CLLocation*)prior current:(CLLocation*)current;
 
 +(double) distanceInKilometers:(double)lat1 lon1:(double)lon1 lat2:(double)lat2 lon2:(double)lon2;

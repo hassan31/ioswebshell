@@ -175,7 +175,7 @@
     //this controller requires UPLOAD action, we will ignore what is set in the config from the server
     //and just use the file upload
     //NSLog(@"upload file to url %@",[action getString:@"url"]);
-    [http uploadFile:imgData filename:FILE_NAME_SIGNATURE url:[action getString:@"url"]];
+    [http uploadFile:FILE_NAME_SIGNATURE url:[action getString:@"url"]];
 
 }
 

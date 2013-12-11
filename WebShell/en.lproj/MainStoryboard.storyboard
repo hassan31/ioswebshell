@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Web Shell View Controller-->
@@ -842,7 +842,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <webView contentMode="scaleToFill" id="S8T-uC-Uxe">
-                                <rect key="frame" x="0.0" y="10" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="558"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                                 <connections>
@@ -850,7 +850,7 @@
                                 </connections>
                             </webView>
                             <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="D80-Mp-McK">
-                                <rect key="frame" x="5" y="0.0" width="25" height="26"/>
+                                <rect key="frame" x="5" y="14" width="25" height="26"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" backgroundImage="close-light.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -860,11 +860,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="close:" destination="1wM-FN-PuF" eventType="touchUpInside" id="oD3-uW-65A"/>
+                                    <action selector="close:" destination="1wM-FN-PuF" eventType="touchUpInside" id="4Xo-xX-cq7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="J3r-1c-RCo">
-                                <rect key="frame" x="38" y="-2.9999999925494136" width="36" height="32"/>
+                                <rect key="frame" x="38" y="11" width="36" height="32"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" backgroundImage="rotate-light.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -874,15 +874,14 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="rotate:" destination="1wM-FN-PuF" eventType="touchUpInside" id="cDv-my-EX0"/>
+                                    <action selector="rotate:" destination="1wM-FN-PuF" eventType="touchUpInside" id="bXp-Tv-ddS"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="btnClose" destination="D80-Mp-McK" id="63y-L5-eAJ"/>
-                        <outlet property="btnRotate" destination="J3r-1c-RCo" id="Lop-5t-6hu"/>
+                        <outlet property="btnRotate" destination="J3r-1c-RCo" id="4ff-V7-Nct"/>
                         <outlet property="lblTitle" destination="HN3-tS-V5R" id="4Uh-8Q-kXP"/>
                         <outlet property="webView" destination="S8T-uC-Uxe" id="843-aZ-HgG"/>
                     </connections>

@@ -28,6 +28,7 @@
 +(NSString*) saveToDocuments:(NSData*)data fileName:(NSString*) fileName;
 +(NSString*) saveToCacheFolder:(NSData*)data fileName:(NSString*) fileName;
 +(NSString*) saveStringToCacheFolder:(NSString*)data fileName:(NSString*) fileName;
++(NSInputStream*) retrieveStreamFromDocuments:(NSString *)fileName;
 +(NSURL*) retrieveUrlFromDocuments:(NSString *)fileName;
 +(NSURL*) retrieveUrlFromCache:(NSString *)fileName;
 +(NSData*) retrieveFromCache:(NSString*) fileName;

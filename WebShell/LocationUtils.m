@@ -20,6 +20,8 @@
 
 @implementation LocationUtils
 
+
+
 +(double) distanceInKilometers:(double)lat1 lon1:(double)lon1 lat2:(double)lat2 lon2:(double)lon2{
 	double nRadius = 6371; // Earth's radius in Kilometers
     double latRadians = [self toRadians:lat1 point2:lat2];

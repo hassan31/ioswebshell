@@ -1,18 +1,37 @@
 /*
- * Copyright (C) 2013 Tek Counsel LLC
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ copyright (c) 2010 include7 AG – Jonas Schnelli
+ 
+ All rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+ 
+ 1) Redistributions of source code must retain the above copyright notice,
+ this list of conditions and the following disclaimer.
+ 
+ 2) Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
+ 
+ 3) All advertising materials mentioning features or use of this software
+ must display the following acknowledgement: “This product includes software
+ developed by the include7 AG, Switzerland and its contributors.”
+ 
+ 4) Neither the name of the include7 AG, Switzerland nor the names of
+ its contributors may be used to endorse or promote products derived from
+ this software without specific prior written permission.
+ 
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+ IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE INCLUDE7 AG OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import "UIColor+HexString.h"
@@ -20,68 +39,43 @@
 
 @implementation UIColor(HexString)
 
-+ (UIColor *) colorWithHexString: (NSString *) hexString {
++ (UIColor *)colorWithHexString:(NSString *)hexString {
     
-    NSString *colorString = [[hexString stringByReplacingOccurrencesOfString: @"#" withString: @""] uppercaseString];
-    CGFloat alpha, red, blue, green;
-    switch ([colorString length]) {
-        case 3: // #RGB
-            alpha = 1.0f;
-            red   = [self colorComponentFrom: colorString start: 0 length: 1];
-            green = [self colorComponentFrom: colorString start: 1 length: 1];
-            blue  = [self colorComponentFrom: colorString start: 2 length: 1];
-            break;
-        case 4: // #ARGB
-            alpha = [self colorComponentFrom: colorString start: 0 length: 1];
-            red   = [self colorComponentFrom: colorString start: 1 length: 1];
-            green = [self colorComponentFrom: colorString start: 2 length: 1];
-            blue  = [self colorComponentFrom: colorString start: 3 length: 1];
-            break;
-        case 6: // #RRGGBB
-            alpha = 1.0f;
-            red   = [self colorComponentFrom: colorString start: 0 length: 2];
-            green = [self colorComponentFrom: colorString start: 2 length: 2];
-            blue  = [self colorComponentFrom: colorString start: 4 length: 2];
-            break;
-        case 8: // #AARRGGBB
-            alpha = [self colorComponentFrom: colorString start: 0 length: 2];
-            red   = [self colorComponentFrom: colorString start: 2 length: 2];
-            green = [self colorComponentFrom: colorString start: 4 length: 2];
-            blue  = [self colorComponentFrom: colorString start: 6 length: 2];
-            break;
-        default:
-            return [UIColor lightGrayColor];
-            break;
+    /* convert the string into a int */
+    unsigned int colorValueR,colorValueG,colorValueB,colorValueA;
+    NSString *hexStringCleared = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    if(hexStringCleared.length == 3) {
+        /* short color form */
+        /* im lazy, maybe you have a better idea to convert from #fff to #ffffff */
+        hexStringCleared = [NSString stringWithFormat:@"%@%@%@%@%@%@", [hexStringCleared substringWithRange:NSMakeRange(0, 1)],[hexStringCleared substringWithRange:NSMakeRange(0, 1)],
+                            [hexStringCleared substringWithRange:NSMakeRange(1, 1)],[hexStringCleared substringWithRange:NSMakeRange(1, 1)],
+                            [hexStringCleared substringWithRange:NSMakeRange(2, 1)],[hexStringCleared substringWithRange:NSMakeRange(2, 1)]];
     }
-    return [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
+    if(hexStringCleared.length == 6) {
+        hexStringCleared = [hexStringCleared stringByAppendingString:@"ff"];
+    }
+    
+    /* im in hurry ;) */
+    NSString *red = [hexStringCleared substringWithRange:NSMakeRange(0, 2)];
+    NSString *green = [hexStringCleared substringWithRange:NSMakeRange(2, 2)];
+    NSString *blue = [hexStringCleared substringWithRange:NSMakeRange(4, 2)];
+    NSString *alpha = [hexStringCleared substringWithRange:NSMakeRange(6, 2)];
+    
+    [[NSScanner scannerWithString:red] scanHexInt:&colorValueR];
+    [[NSScanner scannerWithString:green] scanHexInt:&colorValueG];
+    [[NSScanner scannerWithString:blue] scanHexInt:&colorValueB];
+    [[NSScanner scannerWithString:alpha] scanHexInt:&colorValueA];
+    
+    
+    return [UIColor colorWithRed:((colorValueR)&0xFF)/255.0
+                           green:((colorValueG)&0xFF)/255.0
+                            blue:((colorValueB)&0xFF)/255.0
+                           alpha:((colorValueA)&0xFF)/255.0];
+    
+    
 }
 
-+ (CGFloat) colorComponentFrom: (NSString *) string start: (NSUInteger) start length: (NSUInteger) length {
-    NSString *substring = [string substringWithRange: NSMakeRange(start, length)];
-    NSString *fullHex = length == 2 ? substring : [NSString stringWithFormat: @"%@%@", substring, substring];
-    unsigned hexComponent;
-    [[NSScanner scannerWithString: fullHex] scanHexInt: &hexComponent];
-    return hexComponent / 255.0;
-}
 
-+(BOOL)isDarkColor:(NSString*)hexString{
-    NSString *colorString = [[hexString stringByReplacingOccurrencesOfString: @"#" withString: @""] uppercaseString];
-    NSScanner* scanner = [NSScanner scannerWithString:colorString];
-    unsigned int hex;
-    
-    if ([scanner scanHexInt:&hex]) {
-        // Parsing successful. We have a big int representing the 0xBD8F60 value
-        int r = (hex >> 16) & 0xFF; // get the first byte
-        int g = (hex >>  8) & 0xFF; // get the middle byte
-        int b = (hex      ) & 0xFF; // get the last byte
-        
-        int lightness = ((r*299)+(g*587)+(b*114))/1000; //get lightness value
-        
-        if (lightness < 127) { //127 = middle of possible lightness value
-            return YES;
-        }
-    }
-    return NO;
-}
+
 
 @end

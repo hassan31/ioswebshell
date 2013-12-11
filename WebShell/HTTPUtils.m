@@ -17,14 +17,9 @@
 
 #import "HTTPUtils.h"
 
-
 @implementation HTTPUtils
 
 @synthesize customHeaders,statusCode,callBack,callBackOwner;
-
-
-
-
 
 -(void) addCustomHeader:(NSString *)headerName headerValue:(NSString *)headerValue{	
 
@@ -92,7 +87,7 @@
         
         
     }else if([httpMethod isEqualToString:@"UPLOAD"]){
-        [self uploadFile:data filename:params url:url];
+        [self uploadFile:params url:url];
         
     }
     
@@ -139,9 +134,6 @@
         
         // Decode the data
         NSError *myErr;
-        //NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-        
-      //  NSString *responseDataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 
         // If there was an error decoding the JSON
         if (myErr) {
@@ -442,139 +434,34 @@
 	
 }
 
-+ (void)performRequestWithUri:(NSString *)requestUri params:(NSDictionary *)params completionHandler:(void (^)(NSString *, NSError *))completionBlock
+
+
+- (NSString *)generateBoundaryString
 {
+    CFUUIDRef       uuid;
+    CFStringRef     uuidStr;
+    NSString *      result;
     
+    uuid = CFUUIDCreate(NULL);
+    assert(uuid != NULL);
     
+    uuidStr = CFUUIDCreateString(NULL, uuid);
+    assert(uuidStr != NULL);
     
+    result = [NSString stringWithFormat:@"Boundary-%@", uuidStr];
     
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    CFRelease(uuidStr);
+    CFRelease(uuid);
     
-    //build the URL.
-    NSMutableString *requestUrl = [[NSMutableString alloc] initWithString:[prefs stringForKey:@"appUrl"]];
-    [requestUrl appendString:requestUri];
-    
-    
-    // Create the connection
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:requestUrl]];
-    
-    
-    // Make an NSOperationQueue
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue setName:@"webshell.queue"];
-    
-    // Send an asyncronous request on the queue
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        // If there was an error getting the data
-        if (error) {
-            
-            dispatch_async(dispatch_get_main_queue(), ^(void) {
-                completionBlock(nil, error);
-            });
-            return;
-        }
-        
-        // Decode the data
-        NSError *jsonError;
-        //NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
-        
-        NSString *responseDataString = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-        
-        
-        // If there was an error decoding the JSON
-        if (jsonError) {
-            
-            dispatch_async(dispatch_get_main_queue(), ^(void) {
-                
-            });
-            return;
-        }
-        
-        // All looks fine, lets call the completion block with the response data
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            completionBlock(responseDataString, nil);
-        });
-    }];
+    return result;
 }
 
 
-
-- (void)uploadFile:(NSData *)fileData filename:(NSString *)filename url:(NSString*)url{
-    
+- (void)uploadFile:(NSString *)filename url:(NSString*)url{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
-    
-    NSString *urlString = url;
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:urlString]];
-    [request setHTTPMethod:@"POST"];
-    
-    NSString *boundary = @"---------------------------14737809831466499882746641449";
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
-    
-    NSMutableData *body = [NSMutableData data];
-    
-    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    [body appendData:[[NSString stringWithString:[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"%@\"\r\n",filename]] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    //NSLog(@"fileData length is %i", [fileData length]);
-    
-    [body appendData:[NSData dataWithData:fileData]];
-    
-    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-   
-    [request setHTTPBody:body];
-    
-   // [request setTimeoutInterval:2000.0];
-
-    //set the authorization header.
-    [self setAuthorizationHeader:request];
-    
-    
-    
-    
-    // Make an NSOperationQueue
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue setName:@"webshell.queue"];
-    
-    // Send an asyncronous request on the queue
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        // If there was an error getting the data
-        if (error) {
-            
-            dispatch_async(dispatch_get_main_queue(), ^(void) {
-                [self onComplete:nil];
-            });
-            return;
-        }
-        
-        // Decode the data
-        NSError *myErr;
-
-        // If there was an error decoding the JSON
-        if (myErr) {
-            dispatch_async(dispatch_get_main_queue(), ^(void) {
-                [self onComplete:data];
-            });
-            return;
-        }
-        
-        // All looks fine, lets call the completion block with the response data
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            NSHTTPURLResponse *res= (NSHTTPURLResponse*) response;
-            self.statusCode=res.statusCode;
-            [self onComplete:data];
-        });
-    }];
-    
+    HTTPUploader *uploader = [[HTTPUploader alloc] init];
+    uploader.httputils=self;
+    [uploader startSend:filename url:url];
 }
 
 

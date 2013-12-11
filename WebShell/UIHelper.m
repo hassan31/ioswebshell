@@ -231,6 +231,7 @@
             color = BLUE_COLOR;
         }else{
             color = [UIColor colorWithHexString:hexColor];
+            
         }
         
         

@@ -13,24 +13,22 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * based on Apple's SimpleURLConnections sample (see PostController)
  */
 
+#import <Foundation/Foundation.h>
+#import "FileUtils.h"
+@class HTTPUtils;
 
-#import <UIKit/UIKit.h>
-
-typedef enum
-{
-	VerticalAlignmentTop = 0, // default
-	VerticalAlignmentMiddle,
-	VerticalAlignmentBottom,
-} VerticalAlignment;
-
-@interface UILabel2 : UILabel
-{
-@private
-	VerticalAlignment _verticalAlignment;
+@interface HTTPUploader : NSObject{
+    
+    HTTPUtils *httputils;
+    NSMutableData *data;
+    
 }
-
-@property (nonatomic) VerticalAlignment verticalAlignment;
+@property(nonatomic,retain) HTTPUtils *httputils;
+@property(nonatomic,retain) NSMutableData *data;
+- (void)startSend:(NSString *)filePath url:(NSString*)strurl;
 
 @end

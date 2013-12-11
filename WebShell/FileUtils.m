@@ -100,7 +100,13 @@
 }
 
 
-
++(NSInputStream*) retrieveStreamFromDocuments:(NSString *)fileName{
+    NSString *path = [self documentPath];
+    NSString *filePath = [path stringByAppendingPathComponent:fileName];
+    //NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
+    NSInputStream *inputstream =[NSInputStream inputStreamWithFileAtPath:filePath];
+    return inputstream;
+}
 
 +(NSData*) retrieveFromDocuments:(NSString *)fileName{
     NSString *path = [self documentPath];

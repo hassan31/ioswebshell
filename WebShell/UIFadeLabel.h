@@ -17,7 +17,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
-#import "UILabel2.h"
 
 @interface UIFadeLabel : UILabel{
     int fadeOutSeconds;

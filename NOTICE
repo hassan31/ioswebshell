@@ -20,3 +20,9 @@ The project contains the following 3rd party code:
 
 
 4. The product contains images from Team Box's free file icons which can be found https://github.com/teambox/Free-file-icons under the MIT license.
+
+
+5. The product contains code colorWithHextString method by include7 AG which can be found at https://github.com/jonasschnelli/UIColor-i7HexColor/ under a simple "MIT like" license authored by include7 AG – Jonas Schnelli
+
+
+6. The product contains a UIImage+Scale category class based on http://iphonedevelopertips.com/graphics/how-to-scale-an-image-using-an-objective-c-category.html from John Muchow.  Permission to use this has been granted from the author.
