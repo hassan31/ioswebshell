@@ -242,7 +242,7 @@
     
     //this controller requires UPLOAD action, we will ignore what is set in the config from the server
     //NSLog(@"calling url %@", [action getString:@"url"]);
-    [http uploadFile:FILE_NAME_VIDEO url:[action getString:@"url"]];
+    [http uploadFile:self.movieURL.path url:[action getString:@"url"]];
     
     
 }

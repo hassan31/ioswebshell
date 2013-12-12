@@ -330,7 +330,7 @@
     
     //this controller requires UPLOAD action, we will ignore what is set in the config from the server
     //NSLog(@"calling url %@", [action getString:@"url"]);
-    [http uploadFile:FILE_NAME_PHOTO url:[action getString:@"url"]];
+    [http uploadFile:url.path url:[action getString:@"url"]];
     
     
 }

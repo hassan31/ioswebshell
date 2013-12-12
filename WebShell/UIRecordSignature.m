@@ -162,6 +162,8 @@
     [FileUtils saveToCacheFolder:imgData fileName:FILE_NAME_SIGNATURE];
     
     
+    NSURL *nsurl = [FileUtils retrieveUrlFromCache:FILE_NAME_SIGNATURE];
+    
     //setup the http utils client
     HTTPUtils *http = [[HTTPUtils alloc] init];
     
@@ -175,7 +177,7 @@
     //this controller requires UPLOAD action, we will ignore what is set in the config from the server
     //and just use the file upload
     //NSLog(@"upload file to url %@",[action getString:@"url"]);
-    [http uploadFile:FILE_NAME_SIGNATURE url:[action getString:@"url"]];
+    [http uploadFile:nsurl.path url:[action getString:@"url"]];
 
 }
 
