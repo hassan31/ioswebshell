@@ -102,11 +102,9 @@
             if([customdata isEqualToString:@""]==FALSE){
                 [navaction setObjectSafely:customdata forKey:@"customdata"];
             }
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:ON_NAVIGATE object:navaction];
-            return;
-            
         }
+        [[NSNotificationCenter defaultCenter] postNotificationName:ON_NAVIGATE object:navaction];
+        return;
     }
     
     
