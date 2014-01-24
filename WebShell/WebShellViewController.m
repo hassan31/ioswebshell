@@ -13,7 +13,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+cust */
 
 #import "WebShellViewController.h"
 
@@ -350,6 +350,9 @@
                 [function appendString:@"');"];
                 // NSLog(@"final function is %@", function);
                 [self.webView stringByEvaluatingJavaScriptFromString:function];
+                
+                //set scriptfunction to empty string so we don't call it again on page refresh.
+                [self.selectedAction setObjectSafely:@"" forKey:@"scriptfunction"];
             }
         }
         
@@ -1212,6 +1215,10 @@
     NSMutableString *params = [[NSMutableString alloc] initWithString:@"apikey="];
     [params appendString:apikey];
     
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 @end

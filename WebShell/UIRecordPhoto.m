@@ -150,6 +150,10 @@
 }
 
 
+-(void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
+
 //image picker methods
 -(IBAction)loadCameraRoll:(id)sender{
     

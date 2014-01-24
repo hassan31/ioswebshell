@@ -98,6 +98,9 @@
     // e.g. self.myOutlet = nil;
 }
 
+-(void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
 
 
 -(IBAction)loadCamera:(id)sender{

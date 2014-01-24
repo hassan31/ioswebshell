@@ -34,7 +34,6 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    
     prefs=[NSUserDefaults standardUserDefaults];
     
     self.spinner = [[Spinner alloc] init];
@@ -167,6 +166,13 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
+
 
 
 @end
