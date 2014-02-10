@@ -246,6 +246,7 @@ cust */
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
+        
     [loading stopAnimating];
     
     [self setButtonStates];
@@ -473,13 +474,7 @@ cust */
             }
         }
     }
-    
-    
-    
     txtUrl.text =   [url absoluteString];
-    self.btnActions.enabled=FALSE;
-    self.btnMenu.enabled=FALSE;
-    
     return YES;
 }
 
